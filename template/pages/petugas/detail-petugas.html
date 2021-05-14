@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>Detail Petugas | Sipandu Beradat</title>
+    <link
+      rel="stylesheet"
+      href="../../assets/vendors/mdi/css/materialdesignicons.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../../assets/vendors/flag-icon-css/css/flag-icon.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../../assets/vendors/css/vendor.bundle.base.css"
+    />
+    <link rel="stylesheet" href="../../assets/css/style.css" />
+    <link rel="shortcut icon" href="../../assets/logo/logosb.png" />
+    <link rel="stylesheet" href="../../assets/css/detail-petugas.css" />
+    <link
+      rel="stylesheet"
+      href="../../assets/css/dataTables.bootstrap4.min.css"
+    />
+  </head>
+
+  <body>
+    <div class="container-scroller">
+      <nav class="sidebar sidebar-offcanvas" id="sidebar">
+        <div
+          class="sidebar-brand-wrapper d-flex align-items-center justify-content-center"
+        >
+          <a class="sidebar-brand brand-logo" href="../../index.html"
+            ><img src="../../assets//logo/instansi-white.png" alt="logo"
+          /></a>
+          <a class="sidebar-brand brand-logo-mini" href="../../index.html"
+            ><img src="../../assets/logo/logosb.png" alt="logo"
+          /></a>
+        </div>
+        <ul class="nav">
+          <li class="nav-item nav-profile my-2">
+            <a href="#" class="nav-link">
+              <div class="nav-profile-image">
+                <img
+                  id="sidebar-avatar-admin"
+                  src="../../assets/img/logosb.png"
+                  alt="profile"
+                />
+              </div>
+              <div class="nav-profile-text d-flex flex-column pr-3">
+                <span
+                  class="font-weight-medium mb-2 text-light"
+                  id="sidebar-nama-admin"
+                  >Super Admin</span
+                >
+                <span
+                  id="sidebar-nama-instansi"
+                  class="font-weight-normal"
+                  style="color: #a2a3b7"
+                  >Sipandu Beradat</span
+                >
+              </div>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="../../index.html">
+              <i class="mdi mdi-apps menu-icon"></i>
+              <span class="menu-title">Dashboard</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="../admin-instansi/admin-instansi.html">
+              <i class="mdi mdi-account-star menu-icon"></i>
+              <span class="menu-title">Admin Instansi</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="petugas.html">
+              <i class="mdi mdi-account-group menu-icon"></i>
+              <span class="menu-title">Petugas</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="../pelaporan/pelaporan.html">
+              <i class="mdi mdi-file-multiple menu-icon"></i>
+              <span class="menu-title">Pelaporan</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <div class="container-fluid page-body-wrapper">
+        <div id="theme-settings" class="settings-panel">
+          <i class="settings-close mdi mdi-close"></i>
+          <p class="settings-heading">SIDEBAR SKINS</p>
+          <div class="sidebar-bg-options selected" id="sidebar-default-theme">
+            <div class="img-ss rounded-circle bg-light border mr-3"></div>
+            Default
+          </div>
+          <div class="sidebar-bg-options" id="sidebar-dark-theme">
+            <div class="img-ss rounded-circle bg-dark border mr-3"></div>
+            Dark
+          </div>
+          <p class="settings-heading mt-2">HEADER SKINS</p>
+          <div class="color-tiles mx-0 px-4">
+            <div class="tiles light"></div>
+            <div class="tiles dark"></div>
+          </div>
+        </div>
+        <nav class="navbar col-lg-12 col-12 p-lg-0 fixed-top d-flex flex-row">
+          <div
+            class="navbar-menu-wrapper d-flex align-items-center justify-content-between"
+          >
+            <a
+              class="navbar-brand brand-logo-mini align-self-center d-lg-none"
+              href="../../index.html"
+              ><img src="../../assets/images/logo-mini.svg" alt="logo"
+            /></a>
+            <button
+              class="navbar-toggler navbar-toggler align-self-center mr-2"
+              type="button"
+              data-toggle="minimize"
+            >
+              <i class="mdi mdi-menu"></i>
+            </button>
+
+            <ul class="navbar-nav navbar-nav-right ml-lg-auto">
+              <li class="nav-item nav-profile dropdown border-0">
+                <a
+                  class="nav-link dropdown-toggle"
+                  id="profileDropdown"
+                  href="#"
+                  data-toggle="dropdown"
+                >
+                  <img
+                    id="avatar-admin"
+                    class="nav-profile-img mr-2"
+                    alt=""
+                    src="../../assets/img/logosb.png"
+                  />
+                  <span id="nama-admin" class="profile-name">Super Admin</span>
+                </a>
+                <div
+                  class="dropdown-menu navbar-dropdown w-100"
+                  aria-labelledby="profileDropdown"
+                >
+                  <a
+                    class="dropdown-item"
+                    data-toggle="modal"
+                    data-target="#modal-logout"
+                  >
+                    <i class="mdi mdi-logout mr-2 text-primary"></i>Keluar</a
+                  >
+                </div>
+              </li>
+            </ul>
+            <button
+              class="navbar-toggler navbar-toggler-right d-lg-none align-self-center"
+              type="button"
+              data-toggle="offcanvas"
+            >
+              <span class="mdi mdi-menu"></span>
+            </button>
+          </div>
+        </nav>
+        <div class="main-panel">
+          <div class="content-wrapper">
+            <div
+              class="page-header d-flex flex-between align-items-center px-2"
+            >
+              <div class="d-flex flex-column">
+                <h1 class="page-title">Detail Petugas</h1>
+                <nav aria-label="breadcrumb">
+                  <ol class="breadcrumb p-0 mt-1">
+                    <li class="breadcrumb-item">
+                      <a href="../../index.html">Dashboard</a>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page">
+                      Detail Petugas
+                    </li>
+                  </ol>
+                </nav>
+              </div>
+             
+            </div>
+            <div class="container-fluid">
+                <div class="row justify-content-center">
+                  <div class="col-xl-12">
+                    <div class="card shadow mb-4">
+                      <div class="card-header">
+                        <div class="col-12 d-flex justify-content-between align-items-center">
+                          <h6 class="m-0 font-weight-bold text-primary">Detail Petugas</h6>
+                          <!-- tombol kembali -->
+                          <a href="petugas.html" class="btn btn-primary btn-icon-split btn-sm">
+                            <span class="icon text-white-50">
+                              <i class="fas fa-arrow-left"></i>
+                            </span>
+                            <span class="text">Kembali</span>
+                          </a>
+                        </div>
+                      </div>
+      
+                      <div class="card-body">
+      
+                        <!-- atas -->
+                        <div class="d-flex justify-content-between align-items-start p-4" style="gap: 20px;">
+      
+                          <div class="row">
+                            <div class="profile-img">
+                              <img id="view-avatar" src="user2.jpg" class="gallery-modal" />
+                            </div>
+      
+                            <div class="profile-head pl-4 pt-4">
+                              <h5 class="text-dark font-weight-bold" style="text-transform: capitalize;" id="view-name"></h5>
+                              <div id="view-active-status"></div>
+                              <ul class="nav nav-tabs pt-4" id="myTab" role="tablist">
+                                <li class="nav-item">
+                                  <a class="nav-link active" id="profil-tab" data-toggle="tab" href="#profil" role="tab"
+                                    aria-controls="profil" aria-selected="true">Profil</a>
+                                </li>
+                                <li class="nav-item">
+                                  <a class="nav-link" id="instansi-tab" data-toggle="tab" href="#instansi" role="tab"
+                                    aria-controls="instansi" aria-selected="false">Instansi</a>
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+      
+                        <!-- tab profil -->
+                        <div class="tab-content" id="myTabContent">
+                          <div class="tab-pane fade show active" id="profil" role="tabpanel" aria-labelledby="profil-tab">
+                            <!-- keterangan -->
+                            <form>
+                              <div class="d-flex">
+                                <div class="col-md-6">
+                                  <div class="form-group">
+                                    <label class="form-control-label" for="nama">NIK</label>
+                                    <input type="text" id="nik" class="form-control" disabled>
+                                  </div>
+                                </div>
+                                <div class="col-md-6">
+                                  <div class="form-group">
+                                    <label class="form-control-label" for="gender">Jenis Kelamin</label>
+                                    <input type="text" id="gender" class="form-control" disabled>
+                                  </div>
+                                </div>
+                              </div>
+      
+                              <div class="d-flex">
+                                <div class="col-lg-4">
+                                  <div class="form-group">
+                                    <label class="form-control-label" for="phone">No. Telp</label>
+                                    <input type="text" id="phone" class="form-control" disabled>
+                                  </div>
+                                </div>
+                                <div class="form-group col-md-4">
+                                  <label for="birth">Tanggal Lahir</label>
+                                  <input class="form-control" type="date" id="birth" disabled>
+                                </div>
+                                <div class="col-lg-4">
+                                  <div class="form-group">
+                                    <label class="form-control-label" for="active-status">Status</label>
+                                    <input type="text" id="active-status" class="form-control" disabled>
+                                  </div>
+                                </div>
+                              </div>
+      
+                            </form>
+                          </div>
+      
+                          <!-- tab instansi -->
+                          <div class="tab-pane fade" id="instansi" role="tabpanel" aria-labelledby="instansi-tab">
+                            <form>
+                              <div class="d-flex">
+                                <div class="col-lg-6">
+                                  <div class="form-group">
+                                    <label class="form-control-label" for="kabupaten">Kabupaten</label>
+                                    <input type="text" id="kabupaten" class="form-control" disabled>
+                                  </div>
+                                </div>
+                                <div class="col-lg-6">
+                                  <div class="form-group">
+                                    <label class="form-control-label" for="input-email">Kecamatan</label>
+                                    <input type="text" id="kecamatan" class="form-control" disabled>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="d-flex">
+                                <div class="col-lg-6">
+                                  <div class="form-group">
+                                    <label class="form-control-label" for="provinsi">Provinsi</label>
+                                    <input type="text" id="provinsi" class="form-control" disabled>
+                                  </div>
+                                </div>
+                                <div class="col-lg-6">
+                                  <div class="form-group">
+                                    <label class="form-control-label" for="provinsi">Negara</label>
+                                    <input type="text" id="negara" class="form-control" disabled>
+                                  </div>
+                                </div>
+                              </div>
+                            </form>
+                          </div>
+                        </div>
+      
+                      </div>
+                    </div>
+                  </div>
+                </div>
+      
+              </div>
+          <!-- Logout Modal-->
+          <div
+            class="modal fade"
+            id="modal-logout"
+            tabindex="-1"
+            role="dialog"
+            aria-labelledby="exampleModalLabel"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">
+                    Apakah anda yakin akan keluar?
+                  </h5>
+                  <button
+                    class="close"
+                    type="button"
+                    data-dismiss="modal"
+                    aria-label="Close"
+                  >
+                    <span aria-hidden="true">×</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <p>Tekan tombol keluar untuk keluar dari akun ini.</p>
+                  <div class="modal-footer">
+                    <button
+                      class="btn btn-secondary"
+                      type="button"
+                      data-dismiss="modal"
+                    >
+                      Batal
+                    </button>
+                    <a class="btn btn-primary btn-logout" href="#">Keluar</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Modal Hapus -->
+       
+
+          <footer class="footer">
+            <div
+              class="d-sm-flex justify-content-center justify-content-sm-between"
+            >
+              <span
+                class="text-muted d-block text-center text-sm-left d-sm-inline-block"
+                >Copyright © bootstrapdash.com 2020</span
+              >
+              <span
+                class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center"
+              >
+                Free
+                <a href="https://www.bootstrapdash.com/" target="_blank"
+                  >Bootstrap dashboard template</a
+                >
+                from Bootstrapdash.com</span
+              >
+            </div>
+          </footer>
+        </div>
+        <!-- main-panel ends -->
+      </div>
+      <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+    <script src="../../assets/vendors/js/vendor.bundle.base.js"></script>
+    <script src="../../assets/js/off-canvas.js"></script>
+    <script src="../../assets/js/hoverable-collapse.js"></script>
+    <script src="../../assets/js/misc.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js"></script>
+
+    <!-- JS -->
+    <script src="../../js/refresh-token.js"></script>
+    <script src="../../js/helper.js"></script>
+    <script src="js/create-petugas.js"></script>
+    <script src="js/read-petugas.js"></script>
+    <script src="js/detail-petugas.js"></script>
+    <script src="js/update-petugas.js"></script>
+    <script src="js/delete-petugas.js"></script>
+    <script src="../../assets/js/Front End/Profil Admin/navbar-admin.js"></script>
+    <script src="../../js/logout.js"></script>
+    <script src="../../assets/js/loading.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+  </body>
+</html>
