@@ -5,7 +5,7 @@ $("#form-edit-admin-instansi").submit(async (e) => {
 });
 
 const updateAdmin = async () => {
-  $(".preloader1").fadeIn(300);
+  startLoading();
   const id = $("#edit-id").val();
   const id_petugas = $("#edit-id-petugas").val();
   const status_aktif = $("#edit-active-status").val();
@@ -45,5 +45,4 @@ const updateAdmin = async () => {
   } else if (status_code === 401) {
     refreshToken(updateAdmin);
   }
-  $(".preloader1").fadeOut(300);
 };

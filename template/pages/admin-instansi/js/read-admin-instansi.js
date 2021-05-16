@@ -1,6 +1,6 @@
 $("#form-instansi").submit(async (e) => {
   e.preventDefault();
-  $(".preloader").fadeIn(300);
+  startLoading();
   await readAdmin();
 });
 const super_admin_status_badges = [
@@ -25,13 +25,11 @@ const readPetugas = async () => {
   );
   const { status_code, data } = await req.json();
 
-
   if (status_code === 200) {
     data.map((obj) => {
-      console.log("HHHHHHHHHHH",obj)
+      console.log("HHHHHHHHHHH", obj);
       const option = `<option value="${obj.id}">${obj.name}</option>`;
       $("#tambah-admin-instansi").append(option);
-     
     });
   } else {
     readPetugas();
@@ -46,9 +44,12 @@ const readInstansi = async () => {
   const { status_code, data } = await req.json();
 
   data1 = data.filter((obj, pos, arr) => {
-    return arr.map(mapObj =>
-          mapObj.instansi_petugas.jenis_instansi.name).indexOf(obj.instansi_petugas.jenis_instansi.name) == pos;
-    });
+    return (
+      arr
+        .map((mapObj) => mapObj.instansi_petugas.jenis_instansi.name)
+        .indexOf(obj.instansi_petugas.jenis_instansi.name) == pos
+    );
+  });
   if (status_code === 200) {
     data1.map((obj) => {
       const option1 = `<option value="${obj.instansi_petugas.jenis_instansi.id}">${obj.instansi_petugas.jenis_instansi.name}</option>`;
@@ -59,60 +60,64 @@ const readInstansi = async () => {
   }
 };
 const readAdmin = async () => {
-  $(".preloader").fadeIn(300);
-  const tambahInstansi = $("#tambah-instansi").val()
-  const tambahStatusAkun = $("#tambah-status-akun").val()
-  const statusAktif = $("#status_aktif").val()
-  var arraysemen =[]
+  startLoading();
+  const tambahInstansi = $("#tambah-instansi").val();
+  const tambahStatusAkun = $("#tambah-status-akun").val();
+  const statusAktif = $("#status_aktif").val();
+  var arraysemen = [];
   const id_instansi = localStorage.getItem("id_instansi");
-  var dataArray =[tambahInstansi,tambahStatusAkun,statusAktif]
-  link= `https://api.sipandu-beradat.id/admin-instansi/?id_instansi=${id_instansi}`
- console.log(link)
+  var dataArray = [tambahInstansi, tambahStatusAkun, statusAktif];
+  link = `https://api.sipandu-beradat.id/admin-instansi/?id_instansi=${id_instansi}`;
+  console.log(link);
   const req = await fetch(link);
   const { status_code, data, message } = await req.json();
-  if(tambahInstansi== "c" && tambahStatusAkun == "c" && statusAktif == "c"){
-      data1 = data
-      console.log("hh")
-  }else{
-    console.log("hh1")
-    for(var c =0; c<dataArray.length;c++){
-      if(dataArray[c] !== "c" && dataArray[c]!=="Pilih kategori pelapor" &&dataArray[c] !=="Pilih kategori desa adat" ){
-        console.log("yy",dataArray[c] !== "c")
-        arraysemen.push(c)
+  if (tambahInstansi == "c" && tambahStatusAkun == "c" && statusAktif == "c") {
+    data1 = data;
+    console.log("hh");
+  } else {
+    console.log("hh1");
+    for (var c = 0; c < dataArray.length; c++) {
+      if (
+        dataArray[c] !== "c" &&
+        dataArray[c] !== "Pilih kategori pelapor" &&
+        dataArray[c] !== "Pilih kategori desa adat"
+      ) {
+        console.log("yy", dataArray[c] !== "c");
+        arraysemen.push(c);
       }
-
-}
-console.log("panjgan kl",arraysemen)
-for (var b =0 ; b<arraysemen.length;b++){
-if(b===0){
-  data1 = data.filter(function filterss(data){
-    console.log("KLEE122")
-    var arrayreturn = [data.petugas.instansi_petugas.jenis_instansi.id == tambahInstansi,data.super_admin_status == tambahStatusAkun,
-    data.active_status == statusAktif]
-    console.log("sss",dataArray)
-    return arrayreturn[arraysemen[b]]
-   
-  });
-  console.log("data1",data1)
-}else{
-  console.log("data12",data1)
-  data1 = data1.filter(function filterss(data){
-    var arrayreturn = [data.petugas.instansi_petugas.jenis_instansi.id == tambahInstansi,data.super_admin_status == tambahStatusAkun,
-      data.active_status == statusAktif]
-    console.log("sss",dataArray)
-    return arrayreturn[arraysemen[b]]
-   
-  });
-  
-}
-}
-
-
-}
- console.log(data)
+    }
+    console.log("panjgan kl", arraysemen);
+    for (var b = 0; b < arraysemen.length; b++) {
+      if (b === 0) {
+        data1 = data.filter(function filterss(data) {
+          console.log("KLEE122");
+          var arrayreturn = [
+            data.petugas.instansi_petugas.jenis_instansi.id == tambahInstansi,
+            data.super_admin_status == tambahStatusAkun,
+            data.active_status == statusAktif,
+          ];
+          console.log("sss", dataArray);
+          return arrayreturn[arraysemen[b]];
+        });
+        console.log("data1", data1);
+      } else {
+        console.log("data12", data1);
+        data1 = data1.filter(function filterss(data) {
+          var arrayreturn = [
+            data.petugas.instansi_petugas.jenis_instansi.id == tambahInstansi,
+            data.super_admin_status == tambahStatusAkun,
+            data.active_status == statusAktif,
+          ];
+          console.log("sss", dataArray);
+          return arrayreturn[arraysemen[b]];
+        });
+      }
+    }
+  }
+  console.log(data);
   if (status_code === 200) {
     $(".table-datatable").DataTable({
-      destroy : true,
+      destroy: true,
       fixedHeader: {
         header: true,
         footer: true,
@@ -147,8 +152,7 @@ data-target="#modal-edit-admin-instansi" data-id="${obj.id}" data-id-petugas="${
       $("#edit-id-petugas").val(id_petugas);
       $("#edit-active-status").val(active_status);
     });
-    $(".preloader").fadeOut(300);
-    $(".preloader1").fadeOut(300);
+    stopLoading();
     $("tbody").on("click", ".btn-delete", (e) => {
       const id = $(e.currentTarget).attr("data-id");
       $("#hapus-id").val(id);

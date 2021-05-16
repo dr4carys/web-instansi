@@ -5,7 +5,7 @@ $("#form-edit-petugas").submit(async (e) => {
 });
 
 const updatePetugas = async () => {
-  $(".preloader1").fadeIn(300);
+  startLoading();
   const id = $("#edit-id").val();
   const id_instansi = $("#edit-id-instansi").val();
   const nama = $("#edit-nama").val();
@@ -35,7 +35,7 @@ const updatePetugas = async () => {
     body: fd,
   });
   const { status_code, message } = await req.json();
-  $(".preloader1").fadeOut(300);
+  stopLoading();
   if (status_code === 200) {
     await read_petugas();
     stopLoading();

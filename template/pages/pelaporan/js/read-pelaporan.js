@@ -1,6 +1,6 @@
 $("#form-pelaporan").submit(async (e) => {
   e.preventDefault();
-  $(".preloader").fadeIn(300);
+  startLoading();
   await readAllPelaporan();
 });
 const masyarakat_badges = [
@@ -24,7 +24,6 @@ const status_badges = [
   "<label class='badge badge-success'>Selesai</label>",
 ];
 
-
 $(document).ready(async () => {
   await readAllPelaporan();
   const darurats = await readPelaporanDarurat();
@@ -36,22 +35,22 @@ $(document).ready(async () => {
   var grades = {};
 
   data = data1.filter((obj, pos, arr) => {
-    return arr.map(mapObj =>
-          mapObj.desa_adat.name).indexOf(obj.desa_adat.name) == pos;
-    });
+    return (
+      arr.map((mapObj) => mapObj.desa_adat.name).indexOf(obj.desa_adat.name) ==
+      pos
+    );
+  });
   // console.log(data);
 
-  data.map((obj)=>{
+  data.map((obj) => {
     const option = `<option value="${obj.desa_adat.id}">${obj.desa_adat.name}</option>`;
     $("#kategori-desa-adat").append(option);
-  })
-
+  });
 });
 
 const readPelaporanDarurat = async () => {
   const req = await fetch("https://api.sipandu-beradat.id/pelaporan-darurat/");
   const { status_code, data } = await req.json();
-  // $(".preloader").fadeOut(300);
   if (status_code === 200) {
     return data;
   } else {
@@ -62,7 +61,6 @@ const readPelaporanDarurat = async () => {
 const readPelaporan = async () => {
   const req = await fetch("https://api.sipandu-beradat.id/pelaporan/");
   const { status_code, data } = await req.json();
-  $(".preloader").fadeOut(300);
   if (status_code === 200) {
     return data;
   } else {
@@ -73,7 +71,6 @@ const readPelaporan = async () => {
 const readPelaporanTamu = async () => {
   const req = await fetch("https://api.sipandu-beradat.id/pelaporan-tamu/");
   const { status_code, data } = await req.json();
-  $(".preloader").fadeOut(300);
   if (status_code === 200) {
     return data;
   } else {
@@ -86,7 +83,6 @@ const readPelaporanDaruratTamu = async () => {
     "https://api.sipandu-beradat.id/pelaporan-darurat-tamu/"
   );
   const { status_code, data } = await req.json();
-  $(".preloader").fadeOut(300);
   if (status_code === 200) {
     return data;
   } else {
@@ -95,67 +91,77 @@ const readPelaporanDaruratTamu = async () => {
 };
 
 const readAllPelaporan = async () => {
+  startLoading();
   const darurats = await readPelaporanDarurat();
   const keluhans = await readPelaporan();
   const keluhanTamus = await readPelaporanTamu();
   const daruratTamus = await readPelaporanDaruratTamu();
   const kategori_pelapor = $("#kategori-pelapor option:selected").text();
   const kategori_pelaporan = $("#kategori-pelaporan").val();
-  const kategori_desa_adat =  $("#kategori-desa-adat option:selected").text();
-  const statusAktif = $("#status_aktif ").val()
-  var arraysemen =[]
-  var dataArray =[kategori_desa_adat,kategori_pelaporan,statusAktif]
-  console.log(Boolean(Number(kategori_pelaporan)))
-  
+  const kategori_desa_adat = $("#kategori-desa-adat option:selected").text();
+  const statusAktif = $("#status_aktif ").val();
+  var arraysemen = [];
+  var dataArray = [kategori_desa_adat, kategori_pelaporan, statusAktif];
+  console.log(Boolean(Number(kategori_pelaporan)));
 
   const data = [...darurats, ...keluhans, ...keluhanTamus, ...daruratTamus];
- 
-  if(kategori_pelapor == "Pilih kategori pelapor" && kategori_pelaporan == "c"
-      && kategori_pelaporan == "c" && statusAktif == "c"){
-    // console.log("SS")
-    data1 = data
-  }else{
-      console.log("SS")
-        var list1=""
-       
-        for(var c =0; c<dataArray.length;c++){
-          if(dataArray[c] !== "c" && dataArray[c]!=="Pilih kategori pelapor" &&dataArray[c] !=="Pilih kategori desa adat" ){
-            console.log("yy",dataArray[c] !== "c")
-            arraysemen.push(c)
-          }
-        
-      }
-      console.log("panjgan kl",arraysemen)
-      for (var b =0 ; b<arraysemen.length;b++){
-        if(b===0){
-          console.log("KLEE")
-          data1 = data.filter(function filterss(data){
-            console.log("KLEE122")
-            var arrayreturn = [data.desa_adat.name == kategori_desa_adat  ,data.jenis_pelaporan.emergency_status == Boolean(Number(kategori_pelaporan)),
-              data.status == statusAktif]
-            console.log("sss",dataArray)
-            return arrayreturn[arraysemen[b]]
-           
-          });
-          console.log("data1",data1)
-        }else{
-          console.log("data12",data1)
-          data1 = data1.filter(function filterss(data){
-        
-            var arrayreturn = [data.desa_adat.name == kategori_desa_adat  ,data.jenis_pelaporan.emergency_status == Boolean(Number(kategori_pelaporan)),
-              data.status == statusAktif]
-            console.log("sss",dataArray)
-            return arrayreturn[arraysemen[b]]
-           
-          });
-          
-        }
-      }
 
+  if (
+    kategori_pelapor == "Pilih kategori pelapor" &&
+    kategori_pelaporan == "c" &&
+    kategori_pelaporan == "c" &&
+    statusAktif == "c"
+  ) {
+    // console.log("SS")
+    data1 = data;
+  } else {
+    console.log("SS");
+    var list1 = "";
+
+    for (var c = 0; c < dataArray.length; c++) {
+      if (
+        dataArray[c] !== "c" &&
+        dataArray[c] !== "Pilih kategori pelapor" &&
+        dataArray[c] !== "Pilih kategori desa adat"
+      ) {
+        console.log("yy", dataArray[c] !== "c");
+        arraysemen.push(c);
+      }
+    }
+    console.log("panjgan kl", arraysemen);
+    for (var b = 0; b < arraysemen.length; b++) {
+      if (b === 0) {
+        console.log("KLEE");
+        data1 = data.filter(function filterss(data) {
+          console.log("KLEE122");
+          var arrayreturn = [
+            data.desa_adat.name == kategori_desa_adat,
+            data.jenis_pelaporan.emergency_status ==
+              Boolean(Number(kategori_pelaporan)),
+            data.status == statusAktif,
+          ];
+          console.log("sss", dataArray);
+          return arrayreturn[arraysemen[b]];
+        });
+        console.log("data1", data1);
+      } else {
+        console.log("data12", data1);
+        data1 = data1.filter(function filterss(data) {
+          var arrayreturn = [
+            data.desa_adat.name == kategori_desa_adat,
+            data.jenis_pelaporan.emergency_status ==
+              Boolean(Number(kategori_pelaporan)),
+            data.status == statusAktif,
+          ];
+          console.log("sss", dataArray);
+          return arrayreturn[arraysemen[b]];
+        });
+      }
+    }
   }
-  console.log(data1)
+  console.log(data1);
   $(".table-datatable").DataTable({
-    destroy:true,
+    destroy: true,
     fixedHeader: {
       header: true,
       footer: true,
@@ -203,5 +209,5 @@ const readAllPelaporan = async () => {
   </div>`,
     ]),
   });
-  $(".preloader").fadeOut(300);
+  stopLoading();
 };

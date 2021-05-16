@@ -5,7 +5,7 @@ $("#form-tambah-admin-instansi").submit(async (e) => {
 });
 
 const tambahAdmin = async () => {
-  $(".preloader1").fadeIn(300);
+  startLoading();
   const id_petugas = $("#tambah-admin-instansi").val();
 
   const fd = new FormData();
@@ -41,5 +41,4 @@ const tambahAdmin = async () => {
   } else if (status_code === 401) {
     refreshToken(tambahAdmin);
   }
-  $(".preloader1").fadeOut(300);
 };

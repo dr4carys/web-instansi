@@ -30,20 +30,41 @@
   </head>
 
   <body>
+    <div
+      class="position-fixed fixed-top"
+      id="loading"
+      style="display: none; z-index: 9999"
+    >
+      <div
+        style="width: 100%; height: 100vh; background-color: rgba(0, 0, 0, 0.7)"
+        class="d-flex align-items-center justify-content-center"
+      >
+        <div
+          class="d-flex justify-content-center align-items-center flex-column"
+        >
+          <div
+            class="spinner-border text-primary"
+            role="status"
+            style="width: 4rem; height: 4rem"
+          ></div>
+          <h5 class="text-light pt-4 zindex-modal">Sedang Memproses..</h5>
+        </div>
+      </div>
+    </div>
     <div class="container-scroller">
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <div
           class="sidebar-brand-wrapper d-flex align-items-center justify-content-center"
         >
           <a class="sidebar-brand brand-logo" href="../../index.html"
-            ><img src="../../assets//logo/instansi-white.png" alt="logo"
+            ><img src="../../assets//logo/instansi.png" alt="logo"
           /></a>
           <a class="sidebar-brand brand-logo-mini" href="../../index.html"
             ><img src="../../assets/logo/logosb.png" alt="logo"
           /></a>
         </div>
         <ul class="nav">
-          <li class="nav-item nav-profile my-2">
+          <li class="nav-item nav-profile bg-pink">
             <a href="#" class="nav-link">
               <div class="nav-profile-image">
                 <img
@@ -54,7 +75,7 @@
               </div>
               <div class="nav-profile-text d-flex flex-column pr-3">
                 <span
-                  class="font-weight-medium mb-2 text-light"
+                  class="font-weight-medium mb-2 text-dark"
                   id="sidebar-nama-admin"
                   >Super Admin</span
                 >
@@ -91,7 +112,7 @@
 
           <li class="nav-item active">
             <a class="nav-link" href="pelaporan.html">
-              <i class="mdi mdi-file-multiple menu-icon"></i>
+              <i class="mdi mdi-file-multiple menu-icon active"></i>
               <span class="menu-title">Pelaporan</span>
             </a>
           </li>
@@ -200,7 +221,7 @@
                     <h4 class="card-title mb-4 pb-2">Data Pelaporan</h4>
                     <form id="form-pelaporan">
                       <div class="row">
-                        <div class="form-group mb-4 col-md-4">
+                        <div class="form-group mb-4 col-md-3">
                           <label for="tambah-kecamatan">Pelapor</label>
                           <select class="form-control" id="kategori-pelapor">
                             <option value="c">Pilih kategori pelapor</option>
@@ -208,7 +229,7 @@
                             <option value="2">Krama Wid</option>
                           </select>
                         </div>
-                        <div class="form-group mb-4 col-md-4">
+                        <div class="form-group mb-4 col-md-3">
                         <label for="tambah-desa-adat">Pelaporan</label>
                         <select class="form-control" id="kategori-pelaporan">
                           <option value="c">Pilih kategori pelaporan</option>
@@ -216,13 +237,13 @@
                           <option value="0">Keluhan</option>
                         </select>
                       </div>
-                      <div class="form-group mb-4 col-md-4">
+                      <div class="form-group mb-4 col-md-2">
                         <label for="tambah-desa-adat">Desa Adat</label>
                         <select class="form-control" id="kategori-desa-adat">
                           <option value="c">Pilih kategori desa adat</option>
                         </select>
                       </div>
-                            <div class="form-group mb-4 col-md-4">
+                            <div class="form-group mb-4 col-md-2">
                               <label for="tambah-kabupaten">status aktif</label>
                               <select class="form-control" id="status_aktif">
                                 <option value="c">Pilih Status</option>
@@ -231,11 +252,18 @@
                                 <option value="1">Sedang Diproses</option>
                               </select>
                             </div>
-                            <div class="form-group mb-4 col-md-4">
-                              <label for="buttonsubmit">tombol pilih</label>
-                              <button class = "form-control" type="submit" class="btn btn-primary">
-                                Pilih
-                              </button>
+                            <div class="form-group mb-4 col-md-2">
+                              <label for="buttonsubmit"></label>
+                              <button
+                            class="
+                              form-control
+                              btn btn-sm btn-primary btn-icon-text
+                              mt-1
+                            "
+                            type="submit"
+                          >
+                            <i class="mdi mdi-magnify btn-icon-prepend"></i>Cari
+                          </button>
                             </div>
                     </div>
                       </div>
@@ -426,6 +454,7 @@
     <script src="../../js/refresh-token.js"></script>
     <script src="js/read-pelaporan.js"></script>
     <script src="../../assets/js/Front End/Profil Admin/navbar-admin.js"></script>
+    <script src="../../assets/js/loading.js"></script>
     <script src="../../js/logout.js"></script>
   </body>
 </html>

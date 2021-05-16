@@ -1,6 +1,6 @@
 $("#form-instansi").submit(async (e) => {
   e.preventDefault();
-  $(".preloader").fadeIn(300);
+  startLoading();
   await read_petugas();
 });
 const active_status_badges = [
@@ -28,35 +28,32 @@ $(document).ready(() => {
 });
 
 const read_petugas = async () => {
-  $(".preloader").fadeIn(300);
-  const statusAktif = $("#status_aktif").val()
+  startLoading();
+  const statusAktif = $("#status_aktif").val();
   const idInstansi = localStorage.getItem("id_instansi");
   const req = await fetch(
     `https://api.sipandu-beradat.id/petugas/?id_instansi=${idInstansi}`
   );
   const { status_code, data } = await req.json();
-  console.log("HHHHH",statusAktif)
-  if(statusAktif == "c"){
-    console.log("hh")
-    data1 = data
-  }else{
-    console.log("hh11111111")
-    data1 = data.filter(function filterss(data){
-      return data.active_status ==Boolean(Number(statusAktif)) 
-
+  console.log("HHHHH", statusAktif);
+  if (statusAktif == "c") {
+    console.log("hh");
+    data1 = data;
+  } else {
+    console.log("hh11111111");
+    data1 = data.filter(function filterss(data) {
+      return data.active_status == Boolean(Number(statusAktif));
     });
   }
 
-
   if (status_code === 200) {
-    
     $(".table-datatable").DataTable({
-      destroy:true,
+      destroy: true,
       fixedHeader: {
         header: true,
         footer: true,
       },
-      columnDefs: [ 
+      columnDefs: [
         {
           orderable: false,
           targets: [7],
@@ -127,12 +124,10 @@ const read_petugas = async () => {
       $("#edit-profil-pic").attr("src", avatar);
       $("#edit-active-status").val(active_status);
     });
-    $(".preloader1").fadeOut(300);
-    $(".preloader").fadeOut(300);
+    stopLoading();
     $("tbody").on("click", ".btn-delete", (e) => {
       const id = $(e.currentTarget).attr("data-id");
       $("#hapus-id").val(id);
     });
   }
 };
-

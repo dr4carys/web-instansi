@@ -30,20 +30,46 @@
   </head>
 
   <body>
+    <div
+      class="position-fixed fixed-top"
+      id="loading"
+      style="display: none; z-index: 9999"
+    >
+      <div
+        style="width: 100%; height: 100vh; background-color: rgba(0, 0, 0, 0.7)"
+        class="d-flex align-items-center justify-content-center"
+      >
+        <div
+          class="d-flex justify-content-center align-items-center flex-column"
+        >
+          <div
+            class="spinner-border text-primary"
+            role="status"
+            style="width: 4rem; height: 4rem"
+          ></div>
+          <h5 class="text-light pt-4 zindex-modal">Sedang Memproses..</h5>
+        </div>
+      </div>
+    </div>
     <div class="container-scroller">
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <div
-          class="sidebar-brand-wrapper d-flex align-items-center justify-content-center"
+          class="
+            sidebar-brand-wrapper
+            d-flex
+            align-items-center
+            justify-content-center
+          "
         >
           <a class="sidebar-brand brand-logo" href="../../index.html"
-            ><img src="../../assets//logo/instansi-white.png" alt="logo"
+            ><img src="../../assets//logo/instansi.png" alt="logo"
           /></a>
           <a class="sidebar-brand brand-logo-mini" href="../../index.html"
             ><img src="../../assets/logo/logosb.png" alt="logo"
           /></a>
         </div>
         <ul class="nav">
-          <li class="nav-item nav-profile my-2">
+          <li class="nav-item nav-profile bg-pink">
             <a href="#" class="nav-link">
               <div class="nav-profile-image">
                 <img
@@ -54,7 +80,7 @@
               </div>
               <div class="nav-profile-text d-flex flex-column pr-3">
                 <span
-                  class="font-weight-medium mb-2 text-light"
+                  class="font-weight-medium mb-2 text-dark"
                   id="sidebar-nama-admin"
                   >Super Admin</span
                 >
@@ -84,7 +110,7 @@
 
           <li class="nav-item active">
             <a class="nav-link" href="petugas.html">
-              <i class="mdi mdi-account-group menu-icon"></i>
+              <i class="mdi mdi-account-group menu-icon active"></i>
               <span class="menu-title">Petugas</span>
             </a>
           </li>
@@ -117,7 +143,12 @@
         </div>
         <nav class="navbar col-lg-12 col-12 p-lg-0 fixed-top d-flex flex-row">
           <div
-            class="navbar-menu-wrapper d-flex align-items-center justify-content-between"
+            class="
+              navbar-menu-wrapper
+              d-flex
+              align-items-center
+              justify-content-between
+            "
           >
             <a
               class="navbar-brand brand-logo-mini align-self-center d-lg-none"
@@ -166,7 +197,11 @@
               </li>
             </ul>
             <button
-              class="navbar-toggler navbar-toggler-right d-lg-none align-self-center"
+              class="
+                navbar-toggler navbar-toggler-right
+                d-lg-none
+                align-self-center
+              "
               type="button"
               data-toggle="offcanvas"
             >
@@ -208,30 +243,31 @@
                     <h4 class="card-title mb-4 pb-2">Data Petugas</h4>
                     <form id="form-instansi">
                       <div class="row">
-                      <div class="form-group mb-4 col-md-4">
-                        <label for="tambah-kabupaten">status aktif</label>
-                        <select class="form-control" id="status_aktif">
-                          <option value="c">Pilih Status</option>
-                          <option value="1">Aktif</option>
-                          <option value="0">Tidak Aktif</option>
-                        </select>
-                      </div>
                         <div class="form-group mb-4 col-md-4">
-                          <label for="buttonsubmit">tombol pilih</label>
-                          <button class = "form-control" type="submit" class="btn btn-primary">
-                            Pilih
+                          <label for="tambah-kabupaten">Status Aktif</label>
+                          <select class="form-control" id="status_aktif">
+                            <option value="c">Pilih Status</option>
+                            <option value="1">Aktif</option>
+                            <option value="0">Nonaktif</option>
+                          </select>
+                        </div>
+                        <div class="form-group mb-4 col-md-2">
+                          <label for="buttonsubmit"></label>
+                          <button
+                            class="
+                              form-control
+                              btn btn-sm btn-primary btn-icon-text
+                              mt-1
+                            "
+                            type="submit"
+                          >
+                            <i class="mdi mdi-magnify btn-icon-prepend"></i>Cari
                           </button>
                         </div>
                       </div>
-                      </form>
+                    </form>
                     <table class="table table-datatable" id="tabel-petugas">
                       <thead class="bg-light">
-                        <div class="preloader">
-                          <div class="loading">
-                            <img src="../../assets/logo/loading.gif" width="80">
-                            <p>Harap Tunggu</p>
-                          </div>
-                        </div>
                         <tr>
                           <th>No.</th>
                           <th>Nama Lengkap</th>
@@ -266,12 +302,6 @@
                 role="document"
               >
                 <div class="modal-content">
-                  <div class="preloader1">
-                    <div class="loading">
-                      <img src="../../assets/logo/loading.gif" width="80">
-                      <p>Harap Tunggu</p>
-                    </div>
-                  </div>
                   <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLongTitle">
                       Tambah Data Petugas
@@ -497,12 +527,6 @@
               role="document"
             >
               <div class="modal-content">
-                <div class="preloader1">
-                  <div class="loading">
-                    <img src="../../assets/logo/loading.gif" width="80">
-                    <p>Harap Tunggu</p>
-                  </div>
-                </div>
                 <div class="modal-header">
                   <h5 class="modal-title" id="exampleModalLongTitle">
                     Edit Data Petugas
@@ -617,14 +641,27 @@
 
           <footer class="footer">
             <div
-              class="d-sm-flex justify-content-center justify-content-sm-between"
+              class="
+                d-sm-flex
+                justify-content-center justify-content-sm-between
+              "
             >
               <span
-                class="text-muted d-block text-center text-sm-left d-sm-inline-block"
+                class="
+                  text-muted
+                  d-block
+                  text-center text-sm-left
+                  d-sm-inline-block
+                "
                 >Copyright © bootstrapdash.com 2020</span
               >
               <span
-                class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center"
+                class="
+                  float-none float-sm-right
+                  d-block
+                  mt-1 mt-sm-0
+                  text-center
+                "
               >
                 Free
                 <a href="https://www.bootstrapdash.com/" target="_blank"

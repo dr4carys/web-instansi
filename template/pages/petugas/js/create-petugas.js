@@ -5,7 +5,7 @@ $("#form-tambah-petugas").submit(async (e) => {
 });
 
 const tambahPetugas = async () => {
-  $(".preloader1").fadeIn(300);
+  startLoading();
   const id_instansi = localStorage.getItem("id_instansi");
   const name = $("#tambah-nama").val();
   const username = $("#tambah-username").val();
@@ -36,7 +36,7 @@ const tambahPetugas = async () => {
     body: fd,
   });
   const { status_code, message } = await req.json();
-  $(".preloader1").fadeOut(300);
+  stopLoading();
   if (status_code === 200) {
     await read_petugas();
     stopLoading();
