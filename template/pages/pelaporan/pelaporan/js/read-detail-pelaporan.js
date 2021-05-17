@@ -1,51 +1,102 @@
 $(document).ready(() => {
-  const title = getParameterByName("title");
-  const name = getParameterByName("name");
-  const category = getParameterByName("category");
-  const gender = getParameterByName("gender");
-  const phone = getParameterByName("phone");
-  const avatar = getParameterByName("avatar");
-  const jenis_pelaporan = getParameterByName("jenis-pelaporan");
-  const description = getParameterByName("description");
-  const photo = getParameterByName("photo");
-  const desa_adat = getParameterByName("desa-adat");
-  const kecamatan = getParameterByName("kecamatan");
-  const kabupaten = getParameterByName("kabupaten");
-  const status = getParameterByName("status");
-  const time = getParameterByName("time");
+  readDetailPelaporan()
+  console.log("SSSSSSSSSSSSS bram baru ")
+});
+
+const readDetailPelaporan = async () => {
+  // startLoading();
+  let link;
+  const id = getParameterByName("id_pelaporan");
+  const jenis_krama = getParameterByName("jenis-krama");
   const emergency_status = getParameterByName("emergency-status");
+  const idDesa = localStorage.getItem("id_desa");
 
-  if (JSON.parse(emergency_status)) {
-    $("#form-title").hide();
-    $("#form-description").hide();
-    $("#form-photo").hide();
+  if (emergency_status == 1 && jenis_krama == 1) {
+    link = `https://api.sipandu-beradat.id/pelaporan-darurat-tamu/find/?id_pelaporan_darurat_tamu=${id}&id_desa=${idDesa}`
+  } else if (emergency_status == 0 && jenis_krama == 1) {
+    link = `https://api.sipandu-beradat.id/pelaporan-tamu/find/?id_pelaporan_tamu=${id}&id_desa=${idDesa}`
+  } else if (emergency_status == 1 && jenis_krama == 0) {
+    link = `https://api.sipandu-beradat.id/pelaporan-darurat/find/?id_pelaporan_darurat=${id}&id_desa=${idDesa}`
+  } else if (emergency_status == 0 && jenis_krama == 0) {
+    link = `https://api.sipandu-beradat.id/pelaporan/find/?id_pelaporan=${id}&id_desa=${idDesa}`
   }
+  const req = await fetch(link);
+  const {
+    status_code,
+    data
+  } = await req.json();
 
-  $("#view-avatar").attr("src", avatar);
-  $("#view-avatar-cover").attr("src", avatar);
-  $("#view-name").text(name);
-  $("#view-status").text(
-    status === "0"
-      ? "Menunggu Validasi"
-      : status === "1"
-      ? "Sedang Diproses"
-      : status === "2"
-      ? "Selesai"
-      : "Tida Valid"
-  );
-  $("#view-pelapor").text(category);
-  $("#view-kategori-pelaporan").text(
-    JSON.parse(emergency_status) ? "Darurat" : "Keluhan"
-  );
-  $("#view-time").text(time);
-  $("#detail-title").val(title);
-  $("#detail-nama").val(name);
-  $("#detail-jenis-pelaporan").val(jenis_pelaporan);
-  $("#detail-description").val(description);
-  $("#detail-phone").val(phone);
-  $("#detail-gender").val(gender);
-  $("#detail-photo").attr("src", photo);
-  $("#detail-desa-adat").val(desa_adat);
-  $("#detail-kecamatan").val(kecamatan);
-  $("#detail-kabupaten").val(kabupaten);
+  if (status_code === 200) {
+    let activeClass = " active"
+
+    if (Number(data.jenis_pelaporan.emergency_status) == 0) {
+      const row = `
+        <div class="carousel-item${activeClass}">
+          <img class="d-block w-100 modal-img" data-toggle="modal" data-target="#modal-show-img" src="${data.photo}">
+        </div>
+      `;
+      $("#detail-pelaporan-img").append(row);
+      activeClass = ''
+    }
+
+    data.pecalang_reports.map((obj, i) => {
+      const row = `
+          <div class="carousel-item${activeClass}">
+            <img class="d-block w-100 modal-img" data-toggle="modal" data-target="#modal-show-img" src="${obj.photo}">
+          </div>
+      `;
+      $("#detail-pelaporan-img").append(row);
+      activeClass = ''
+    });
+
+    data.petugas_reports.map((obj, i) => {
+      const row = `
+        <div class="carousel-item${activeClass}">
+          <img class="d-block w-100 modal-img" data-toggle="modal" data-target="#modal-show-img" src="${obj.photo}">
+        </div>
+      `;
+      $("#detail-pelaporan-img").append(row);
+      activeClass = ''
+    });
+
+    // stopLoading();
+
+    if (JSON.parse(data.jenis_pelaporan.emergency_status)) {
+      $("#form-title").hide();
+      $("#form-description").hide();
+    }
+
+    $("#view-avatar").attr("src", data.masyarakat ? data.masyarakat.avatar : data.tamu.avatar);
+    $("#view-avatar-cover").attr("src", data.masyarakat ? data.masyarakat.avatar : data.tamu.avatar);
+    $("#view-name").text(data.masyarakat ? data.masyarakat.name : data.tamu.name);
+    $("#view-pelapor").text(data.masyarakat ? "Krama" : "Tamu");
+    $("#view-kategori-pelaporan").text(
+      JSON.parse(data.jenis_pelaporan.emergency_status) ? "Darurat" : "Keluhan"
+    );
+    $("#view-status").html(
+      data.status === 0 ? '<i class="mdi mdi-circle fa-xs text-primary-orange mr-2"></i><span>Menunggu Validasi</span>' :
+      data.status === 1 ? '<i class="mdi mdi-circle fa-xs text-info mr-2"></i><span>Sedang Diproses</span>' :
+      data.status === -1 ? '<i class="mdi mdi-circle fa-xs text-primary-red mr-2"></i><span>Tidak Valid</span>' :
+      '<i class="mdi mdi-circle fa-xs text-success mr-2"></i><span>Selesai</span>');
+
+    const bulan = ["Jan", "Feb", "Mar", "Apr", "Mei", "Jun", "Jul", "Agu", "Sep", "Okt", "Nov", "Des"];
+    const tanggal = new Date(data.time);
+    const full_date = `${tanggal.getDate()} ${bulan[tanggal.getMonth()]} ${tanggal.getFullYear()}`
+
+    $("#view-time").text(full_date);
+    $("#detail-title").val(data.title);
+    $("#detail-nama").val(data.masyarakat ? data.masyarakat.name : data.tamu.name);
+    $("#detail-jenis-pelaporan").val(data.jenis_pelaporan.name);
+    $("#detail-description").val(data.description);
+    $("#detail-phone").val(data.masyarakat ? data.masyarakat.phone : data.tamu.phone);
+    $("#detail-gender").val(data.masyarakat ? data.masyarakat.gender === 'l' ? "Laki-laki" : "Perempuan" : data.tamu.gender === 'l' ? "Laki-laki" : "Perempuan");
+    $("#detail-desa-adat").val(data.desa_adat.name);
+    $("#detail-kecamatan").val(data.desa_adat.kecamatan.name);
+    $("#detail-kabupaten").val(data.desa_adat.kecamatan.kabupaten.name);
+  }
+};
+
+$('.carousel-inner').on('click', '.modal-img', function () {
+  const img_url = $(this).attr('src');
+  $(".show-img").attr('src', img_url);
 });

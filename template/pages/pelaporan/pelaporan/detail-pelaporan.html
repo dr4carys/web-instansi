@@ -378,22 +378,15 @@
                 </div>
               </div>
 
-              <!-- Col Keterangan -->
-              <div class="col-xl-8 order-xl-1">
+              <div class="col-xl-7 order-xl-1 informasi">
                 <div class="card shadow">
                   <!-- Card Body -->
                   <div class="card-body">
-                    <div
-                      class="d-flex justify-content-between align-items-center mb-4 pb-2"
-                    >
-                      <h4 class="card-title mb-0">Detail Pelaporan</h4>
-                      <a
-                        href="pelaporan.html"
-                        class="btn btn-rounded btn-primary btn-icon-text"
-                      >
-                        <i class="mdi mdi-chevron-left btn-icon-prepend"></i
-                        >Kembali
-                      </a>
+                    <div class="d-flex justify-content-between align-items-center mb-4 pb-2">
+                      <h4 class="card-title mb-0">Detail Pelaporan <span id="text-kategori-pelaporan"></span></h4>
+                      <button class="btn btn-tambah btn-rounded btn-primary btn-icon-text" id="go-back">
+                        <i class="mdi mdi-chevron-left btn-icon-prepend"></i>Kembali
+                      </button>
                     </div>
                     <h6 class="text-muted mb-4">Informasi Pelaporan</h6>
                     <form>
@@ -401,12 +394,7 @@
                         <div class="col-lg-12">
                           <div class="form-group">
                             <label for="nama">Judul Pelaporan</label>
-                            <input
-                              type="text"
-                              id="detail-title"
-                              class="form-control"
-                              disabled
-                            />
+                            <input type="text" autocomplete="off" id="detail-title" class="form-control">
                           </div>
                         </div>
                       </div>
@@ -414,24 +402,14 @@
                         <div class="col-lg-6">
                           <div class="form-group">
                             <label for="nama">Nama Lengkap</label>
-                            <input
-                              type="text"
-                              id="detail-nama"
-                              class="form-control"
-                              style="text-transform: capitalize"
-                              disabled
-                            />
+                            <input type="text" autocomplete="off" id="detail-nama" class="form-control"
+                              style="text-transform: capitalize;">
                           </div>
                         </div>
                         <div class="col-lg-6">
                           <div class="form-group">
                             <label for="nama">Jenis Pelaporan</label>
-                            <input
-                              type="text"
-                              id="detail-jenis-pelaporan"
-                              class="form-control"
-                              disabled
-                            />
+                            <input type="text" autocomplete="off" id="detail-jenis-pelaporan" class="form-control">
                           </div>
                         </div>
                       </div>
@@ -439,12 +417,7 @@
                         <div class="col-lg-12">
                           <div class="form-group">
                             <label for="input-email">Deskripsi Pelaporan</label>
-                            <textarea
-                              type="text"
-                              id="detail-description"
-                              class="form-control"
-                              disabled
-                            ></textarea>
+                            <textarea type="text" id="detail-description" class="form-control"></textarea>
                           </div>
                         </div>
                       </div>
@@ -452,23 +425,13 @@
                         <div class="col-lg-6">
                           <div class="form-group">
                             <label for="input-email">No. Telp</label>
-                            <input
-                              type="text"
-                              id="detail-phone"
-                              class="form-control"
-                              disabled
-                            />
+                            <input type="text" autocomplete="off" id="detail-phone" class="form-control">
                           </div>
                         </div>
                         <div class="col-lg-6">
                           <div class="form-group">
                             <label for="input-first-name">Jenis Kelamin</label>
-                            <input
-                              type="text"
-                              id="detail-gender"
-                              class="form-control"
-                              disabled
-                            />
+                            <input type="text" autocomplete="off" id="detail-gender" class="form-control">
                           </div>
                         </div>
                       </div>
@@ -476,15 +439,22 @@
                         <div class="col-lg-12">
                           <div class="form-group">
                             <label>Foto keluhan</label>
-                            <div class="foto-pelaporan">
-                              <div class="foto">
-                                <img
-                                  id="detail-photo"
-                                  src="../../../assets/images/carousel/banner_2.jpg"
-                                  class="img-fluid modal-img"
-                                />
+                            <div id="carousel-img-pelaporan" class="carousel slide" data-ride="carousel">
+                              <div class="carousel-inner" id="detail-pelaporan-img">
+  
                               </div>
+                              <a class="carousel-control-prev" href="#carousel-img-pelaporan" role="button"
+                                data-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Previous</span>
+                              </a>
+                              <a class="carousel-control-next" href="#carousel-img-pelaporan" role="button"
+                                data-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                              </a>
                             </div>
+  
                           </div>
                         </div>
                       </div>
@@ -495,34 +465,19 @@
                         <div class="col-lg-4">
                           <div class="form-group">
                             <label for="input-country">Desa Adat</label>
-                            <input
-                              type="text"
-                              id="detail-desa-adat"
-                              class="form-control"
-                              disabled
-                            />
+                            <input type="text" autocomplete="off" id="detail-desa-adat" class="form-control">
                           </div>
                         </div>
                         <div class="col-lg-4">
                           <div class="form-group">
                             <label for="input-country">Kecamatan</label>
-                            <input
-                              type="text"
-                              id="detail-kecamatan"
-                              class="form-control"
-                              disabled
-                            />
+                            <input type="text" autocomplete="off" id="detail-kecamatan" class="form-control">
                           </div>
                         </div>
                         <div class="col-lg-4">
                           <div class="form-group">
                             <label for="input-city">Kabupaten</label>
-                            <input
-                              type="text"
-                              id="detail-kabupaten"
-                              class="form-control"
-                              disabled
-                            />
+                            <input type="text" autocomplete="off" id="detail-kabupaten" class="form-control">
                           </div>
                         </div>
                       </div>
@@ -530,21 +485,17 @@
                         <div class="col-lg-12">
                           <div class="form-group">
                             <label for="peta-keluhan">Peta Keluhan</label>
-                            <div
-                              id="maps"
-                              style="width: 100%; height: 300px"
-                            ></div>
+                            <div id="maps" style="width: 100%; height:300px"></div>
                           </div>
                         </div>
                       </div>
                     </form>
                   </div>
                   <!-- End Card Body -->
+  
                 </div>
               </div>
               <!-- End Col Keterangan -->
-            </div>
-          </div>
 
           <!-- Logout Modal-->
           <div

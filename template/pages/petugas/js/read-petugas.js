@@ -18,6 +18,9 @@ $(document).ready(() => {
       $("#label-tambah-profil-pic").text("Select file");
     }
   });
+  $("#status_aktif").change((e) => {
+    read_petugas();
+  });
   $("#edit-profil-pic").change((e) => {
     if (e.currentTarget.files.length > 0) {
       $("#label-edit-profil-pic").text(e.currentTarget.files[0].name);

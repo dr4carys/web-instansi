@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <title>Admin Instansi | Sipandu Beradat</title>
+  <link rel="stylesheet" href="../../assets/vendors/mdi/css/materialdesignicons.min.css" />
+  <link rel="stylesheet" href="../../assets/vendors/flag-icon-css/css/flag-icon.min.css" />
+  <link rel="stylesheet" href="../../assets/vendors/css/vendor.bundle.base.css" />
+  <link rel="stylesheet" href="../../assets/css/style.css" />
+  <link rel="shortcut icon" href="../../assets/logo/logosb.png" />
+
+  <link rel="stylesheet" href="../../assets/css/dataTables.bootstrap4.min.css" />
+</head>
+
+<body>
+  <div class="position-fixed fixed-top" id="loading" style="display: none; z-index: 9999">
+    <div style="width: 100%; height: 100vh; background-color: rgba(0, 0, 0, 0.7)"
+      class="d-flex align-items-center justify-content-center">
+      <div class="d-flex justify-content-center align-items-center flex-column">
+        <div class="spinner-border text-primary" role="status" style="width: 4rem; height: 4rem"></div>
+        <h5 class="text-light pt-4 zindex-modal">Sedang Memproses..</h5>
+      </div>
+    </div>
+  </div>
+  <div class="container-scroller">
+    <nav class="sidebar sidebar-offcanvas" id="sidebar">
+      <div class="
+            sidebar-brand-wrapper
+            d-flex
+            align-items-center
+            justify-content-center
+          ">
+        <a class="sidebar-brand brand-logo" href="../../index.html"><img src="../../assets//logo/instansi.png"
+            alt="logo" /></a>
+        <a class="sidebar-brand brand-logo-mini" href="../../index.html"><img src="../../assets/logo/logosb.png"
+            alt="logo" /></a>
+      </div>
+      <ul class="nav">
+        <li class="nav-item nav-profile bg-pink">
+          <a href="#" class="nav-link">
+            <div class="nav-profile-image">
+              <img id="sidebar-avatar-admin" src="../../assets/img/logosb.png" alt="profile" />
+            </div>
+            <div class="nav-profile-text d-flex flex-column pr-3">
+              <span class="font-weight-medium mb-2 text-dark" id="sidebar-nama-admin">Super Admin</span>
+              <span id="sidebar-nama-instansi" class="font-weight-normal" style="color: #a2a3b7">Sipandu Beradat</span>
+            </div>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="../../index.html">
+            <i class="mdi mdi-apps menu-icon"></i>
+            <span class="menu-title">Dashboard</span>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="../admin-instansi/admin-instansi.html">
+            <i class="mdi mdi-account-star menu-icon "></i>
+            <span class="menu-title">Admin Instansi</span>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="../petugas/petugas.html">
+            <i class="mdi mdi-account-group menu-icon"></i>
+            <span class="menu-title">Petugas</span>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="../pelaporan/pelaporan.html">
+            <i class="mdi mdi-file-multiple menu-icon"></i>
+            <span class="menu-title">Pelaporan</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <div class="container-fluid page-body-wrapper">
+      <div id="theme-settings" class="settings-panel">
+        <i class="settings-close mdi mdi-close"></i>
+        <p class="settings-heading">SIDEBAR SKINS</p>
+        <div class="sidebar-bg-options selected" id="sidebar-default-theme">
+          <div class="img-ss rounded-circle bg-light border mr-3"></div>
+          Default
+        </div>
+        <div class="sidebar-bg-options" id="sidebar-dark-theme">
+          <div class="img-ss rounded-circle bg-dark border mr-3"></div>
+          Dark
+        </div>
+        <p class="settings-heading mt-2">HEADER SKINS</p>
+        <div class="color-tiles mx-0 px-4">
+          <div class="tiles light"></div>
+          <div class="tiles dark"></div>
+        </div>
+      </div>
+      <nav class="navbar col-lg-12 col-12 p-lg-0 fixed-top d-flex flex-row">
+        <div class="
+              navbar-menu-wrapper
+              d-flex
+              align-items-center
+              justify-content-between
+            ">
+          <a class="navbar-brand brand-logo-mini align-self-center d-lg-none" href="../../index.html"><img
+              src="../../assets/images/logo-mini.svg" alt="logo" /></a>
+          <button class="navbar-toggler navbar-toggler align-self-center mr-2" type="button" data-toggle="minimize">
+            <i class="mdi mdi-menu"></i>
+          </button>
+
+          <ul class="navbar-nav navbar-nav-right ml-lg-auto">
+            <li class="nav-item nav-profile dropdown border-0">
+              <a class="nav-link dropdown-toggle" id="profileDropdown" href="../profile-akun/profil-admin.html"
+                data-toggle="dropdown">
+                <img id="avatar-admin" class="nav-profile-img mr-2" alt="" src="../../assets/img/logosb.png" />
+                <span id="nama-admin" class="profile-name">Super Admin</span>
+              </a>
+              <div class="dropdown-menu navbar-dropdown w-100" aria-labelledby="profileDropdown">
+                <a class="dropdown-item" href="../profile-akun/profil-admin.html">
+                  <i class="mdi mdi-cached mr-2 text-success"></i>Profile</a>
+                <a class="dropdown-item" data-toggle="modal" data-target="#modal-logout">
+                  <i class="mdi mdi-logout mr-2 text-primary"></i>Keluar</a>
+              </div>
+            </li>
+          </ul>
+          <button class="
+                navbar-toggler navbar-toggler-right
+                d-lg-none
+                align-self-center
+              " type="button" data-toggle="offcanvas">
+            <span class="mdi mdi-menu"></span>
+          </button>
+        </div>
+      </nav>
+      <div class="main-panel">
+        <div class="content-wrapper">
+          <div class="row">
+            <div class="col-xl-4 order-xl-2">
+              <div class="card card-profile">
+                <div class="foto" style="border-top-left-radius:8px; border-top-right-radius:8px">
+                  <img alt="Images" id="view-cover" src="" alt="Image placeholder" class="card-img-top"
+                    style="filter: blur(6px); border-top-left-radius:8px; border-top-right-radius:8px">
+                </div>
+                <div class="row justify-content-center">
+                  <div class="col-lg-3 order-lg-2">
+                    <div class="card-profile-image" style="background-size: cover;">
+                      <img alt="Images" id="view-avatar" src="" class="rounded-circle modal-img profil-foto">
+                    </div>
+                  </div>
+                </div>
+                <div class="card-body" style="margin-top: 50px;">
+                  <div class="text-center pt-3">
+                    <h5 class="h4 font-weight-bold text-dark" id="view-name" style="text-transform: capitalize;">
+                    </h5>
+                    <div class="d-flex justify-content-center align-items-center" id="view-status">
+
+                    </div>
+                  </div>
+                  <hr class="my-4" />
+                  <div class="row">
+                    <div class="col p-0">
+                      <div class="card-profile-stats d-flex justify-content-center">
+                        <div class="d-flex flex-column align-items-center" style="flex: 33%;">
+                          <span class="h6 text-dark">Jenis Krama</span>
+                          <span class="h6" id="view-category"></span>
+                        </div>
+                        <div class="d-flex flex-column align-items-center" style="flex: 33%;">
+                          <span class="h6 text-dark">Status Aktif</span>
+                          <span class="h6" id="view-active-status"></span>
+                        </div>
+                        <div class="d-flex flex-column align-items-center" style="flex: 33%;">
+                          <span class="h6 text-dark">Desa Adat</span>
+                          <span class="h6" id="view-desa-adat"></span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Col Keterangan -->
+            <div class="col-xl-8 order-xl-1 informasi">
+              <div class="card shadow">
+                <!-- Card Body -->
+                <div class="card-body">
+                  <div class="d-flex justify-content-between align-items-center mb-4 pb-2">
+                    <h4 class="card-title mb-0">Detail Admin</h4>
+                    <button class="btn btn-tambah btn-rounded btn-primary btn-icon-text" id="go-back">
+                      <i class="mdi mdi-chevron-left btn-icon-prepend"></i>Kembali
+                    </button>
+                  </div>
+                  <h6 class="text-muted mb-4">Informasi Admin</h6>
+                  <form>
+                    <div class="row">
+                      <div class="col-lg-12">
+                        <div class="form-group">
+                          <label for="nama">Nama Admin</label>
+                          <input type="text" autocomplete="off" disabled id="nama-admin" class="form-control">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="nama">Nomor Induk Kependudukan</label>
+                          <input type="text" autocomplete="off" disabled id="nik-admin" class="form-control"
+                            style="text-transform: capitalize;">
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="nama">Jenis Kelamin</label>
+                          <input type="text" autocomplete="off" disabled id="gender-admin" class="form-control">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="input-email">No. Telp</label>
+                          <input type="text" autocomplete="off" disabled id="phone-admin" class="form-control">
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="input-first-name">Jenis Kelamin</label>
+                          <input type="text" autocomplete="off" id="birth-admin" disabled class="form-control">
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+                <!-- End Card Body -->
+
+              </div>
+            </div>
+            <!-- End Col Keterangan -->
+
+          </div>
+        </div>
+
+        <!-- Logout Modal-->
+        <div class="modal fade" id="modal-logout" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">
+                  Apakah anda yakin akan keluar?
+                </h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">×</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <p>Tekan tombol keluar untuk keluar dari akun ini.</p>
+                <div class="modal-footer">
+                  <button class="btn btn-secondary" type="button" data-dismiss="modal">
+                    Batal
+                  </button>
+                  <a class="btn btn-primary btn-logout" href="#">Keluar</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- modal img -->
+        <div class="modal fade" id="modal-show-img" role="dialog" aria-labelledby="exampleModalCenterTitle"
+          aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body m-auto">
+                <img alt="Images" class="img-fluid show-img" src="">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <footer class="footer">
+          <div class="d-sm-flex justify-content-center justify-content-sm-between">
+            <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">&copy; Copyright <strong>Sipandu
+                Beradat</strong>. All Rights
+              Reserved</span>
+            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">
+              Designed by <a href="#" class="text-primary">Teknologi Cerdas Squad</a></span>
+          </div>
+        </footer>
+      </div>
+      <!-- main-panel ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+  </div>
+  <!-- container-scroller -->
+  <script src="../../assets/vendors/js/vendor.bundle.base.js"></script>
+  <script src="../../assets/js/off-canvas.js"></script>
+  <script src="../../assets/js/hoverable-collapse.js"></script>
+  <script src="../../assets/js/misc.js"></script>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+  <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js"></script>
+
+  <!-- JS -->
+  <script src="../../js/refresh-token.js"></script>
+  <script src="js/create-admin-instansi.js"></script>
+  <script src="profil-akun.js"></script>
+  <script src="js/read-admin-instansi.js"></script>
+  <script src="js/update-admin-instansi.js"></script>
+  <script src="js/delete-admin-instansi.js"></script>
+  <script src="../../assets/js/Front End/Profil Admin/navbar-admin.js"></script>
+  <script src="../../js/logout.js"></script>
+  <script src="../../assets/js/loading.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+</body>
+
+</html>
