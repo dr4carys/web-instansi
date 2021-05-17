@@ -64,7 +64,7 @@ $(document).ready(async () => {
       $("#tambah-kecamatan").append(
         "<option value=''>Pilih Kecamatan</option>"
       );
-      kecamatans
+      kecamatans 
         .filter((obj) => obj.kabupaten.id === Number(e.target.value))
         .map((obj) => {
           const option = `<option value="${obj.id}">${obj.name}</option>`;
