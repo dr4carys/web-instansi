@@ -183,8 +183,11 @@
                   class="dropdown-menu navbar-dropdown w-100"
                   aria-labelledby="profileDropdown"
                 >
-                <a class="dropdown-item" href="../profile-akun/profil-admin.html">
-                  <i class="mdi mdi-cached mr-2 text-success"></i>Profile</a
+                  <a
+                    class="dropdown-item"
+                    href="../profile-akun/profil-admin.html"
+                  >
+                    <i class="mdi mdi-cached mr-2 text-success"></i>Profile</a
                   >
                   <a
                     class="dropdown-item"
@@ -242,45 +245,6 @@
                 <div class="card">
                   <div class="card-body">
                     <h4 class="card-title mb-4 pb-2">Data Admin Instansi</h4>
-                    <form id="form-instansi">
-                      <div class="row">
-                        <div class="form-group mb-4 col-md-3">
-                          <label for="tambah-kabupaten">Instansi</label>
-                          <select class="form-control" id="tambah-instansi">
-                            <option value="c">Pilih Instansi</option>
-                          </select>
-                        </div>
-                        <div class="form-group mb-4 col-md-3">
-                          <label for="tambah-kecamatan">Status Akun</label>
-                          <select class="form-control" id="tambah-status-akun">
-                            <option value="c">Pilih Status Akun</option>
-                            <option value="1">Superadmin</option>
-                            <option value="0">Admin Instansi</option>
-                          </select>
-                        </div>
-                        <div class="form-group mb-4 col-md-3">
-                          <label for="tambah-kabupaten">Status Aktif</label>
-                          <select class="form-control" id="status_aktif">
-                            <option value="c">Pilih Status</option>
-                            <option value="1">Aktif</option>
-                            <option value="0">Nonaktif</option>
-                          </select>
-                        </div>
-                        <div class="form-group mb-4 col-md-3">
-                          <label for="buttonsubmit"></label>
-                          <button
-                            class="
-                              form-control
-                              btn btn-sm btn-primary btn-icon-text
-                              mt-1
-                            "
-                            type="submit"
-                          >
-                            <i class="mdi mdi-magnify btn-icon-prepend"></i>Cari
-                          </button>
-                        </div>
-                      </div>
-                    </form>
                     <table
                       class="table table-datatable"
                       id="tabel-admin-instansi"
@@ -288,11 +252,11 @@
                       <thead class="bg-light">
                         <tr>
                           <th>No.</th>
-                          <th>Nama</th>
-                          <th>Jenis Kelamin</th>
+                          <th data-type="text">Nama</th>
+                          <th data-type="select">Jenis Kelamin</th>
                           <th>Instansi</th>
-                          <th>Status Akun</th>
-                          <th>Status</th>
+                          <th data-type="select">Status Akun</th>
+                          <th data-type="select">Status Aktif</th>
                           <th>Aksi</th>
                         </tr>
                       </thead>
@@ -545,6 +509,7 @@
 
     <!-- JS -->
     <script src="../../js/refresh-token.js"></script>
+    <script src="../../js/filter-table.js"></script>
     <script src="js/create-admin-instansi.js"></script>
     <script src="js/read-admin-instansi.js"></script>
     <script src="js/update-admin-instansi.js"></script>

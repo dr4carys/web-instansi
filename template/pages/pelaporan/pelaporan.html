@@ -54,7 +54,12 @@
     <div class="container-scroller">
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <div
-          class="sidebar-brand-wrapper d-flex align-items-center justify-content-center"
+          class="
+            sidebar-brand-wrapper
+            d-flex
+            align-items-center
+            justify-content-center
+          "
         >
           <a class="sidebar-brand brand-logo" href="../../index.html"
             ><img src="../../assets//logo/instansi.png" alt="logo"
@@ -138,7 +143,12 @@
         </div>
         <nav class="navbar col-lg-12 col-12 p-lg-0 fixed-top d-flex flex-row">
           <div
-            class="navbar-menu-wrapper d-flex align-items-center justify-content-between"
+            class="
+              navbar-menu-wrapper
+              d-flex
+              align-items-center
+              justify-content-between
+            "
           >
             <a
               class="navbar-brand brand-logo-mini align-self-center d-lg-none"
@@ -173,8 +183,11 @@
                   class="dropdown-menu navbar-dropdown w-100"
                   aria-labelledby="profileDropdown"
                 >
-                <a class="dropdown-item" href="../profile-akun/profil-admin.html">
-                  <i class="mdi mdi-cached mr-2 text-success"></i>Profile</a
+                  <a
+                    class="dropdown-item"
+                    href="../profile-akun/profil-admin.html"
+                  >
+                    <i class="mdi mdi-cached mr-2 text-success"></i>Profile</a
                   >
                   <a
                     class="dropdown-item"
@@ -187,7 +200,11 @@
               </li>
             </ul>
             <button
-              class="navbar-toggler navbar-toggler-right d-lg-none align-self-center"
+              class="
+                navbar-toggler navbar-toggler-right
+                d-lg-none
+                align-self-center
+              "
               type="button"
               data-toggle="offcanvas"
             >
@@ -219,66 +236,17 @@
                 <div class="card">
                   <div class="card-body">
                     <h4 class="card-title mb-4 pb-2">Data Pelaporan</h4>
-                    <form id="form-pelaporan">
-                      <div class="row">
-                        <div class="form-group mb-4 col-md-2">
-                          <label for="tambah-kecamatan">Pelapor</label>
-                          <select class="form-control" id="kategori-pelapor">
-                            <option value="c">Pilih kategori pelapor</option>
-                            <option value="1">Krama Tamiu</option>
-                            <option value="2">Krama Wid</option>
-                          </select>
-                        </div>
-                        <div class="form-group mb-4 col-md-2">
-                        <label for="tambah-desa-adat">Pelaporan</label>
-                        <select class="form-control" id="kategori-pelaporan">
-                          <option value="c">Pilih Kategori Pelaporan</option>
-                          <option value="1">Darurat</option>
-                          <option value="0">Keluhan</option>
-                        </select>
-                      </div>
-                      <div class="form-group mb-4 col-md-2">
-                        <label for="tambah-desa-adat">Desa Adat</label>
-                        <select class="form-control" id="kategori-desa-adat">
-                          <option value="c">Pilih Kategori Desa Adat</option>
-                        </select>
-                      </div>
-                            <div class="form-group mb-4 col-md-2">
-                              <label for="tambah-kabupaten">Status</label>
-                              <select class="form-control" id="status_aktif">
-                                <option value="c">Pilih Status</option>
-                                <option value="0">Menunggu Validasi</option>
-                                <option value="-1">Tidak Valid</option>
-                                <option value="1">Sedang Diproses</option>
-                              </select>
-                            </div>
-                            <div class="form-group mb-4 col-md-2">
-                              <label for="buttonsubmit"></label>
-                              <button
-                            class="
-                              form-control
-                              btn btn-sm btn-primary btn-icon-text
-                              mt-1
-                            "
-                            type="submit"
-                          >
-                            <i class="mdi mdi-magnify btn-icon-prepend"></i>Cari
-                          </button>
-                            </div>
-                    </div>
-                      </div>
-                      </form>
                     <table class="table table-datatable" id="tabel-pelaporan">
                       <thead class="bg-light">
                         <tr>
                           <th>No.</th>
-                          <th>Nama Pelapor</th>
+                          <th data-type="date">Waktu</th>
+                          <th data-type="text">Nama Pelapor</th>
                           <th>Kategori Pelapor</th>
-                          <th>Jenis Pelaporan</th>
-                          <th>Kategori Pelaporan</th>
-                          <th>Desa Adat</th>
-                          <th>Status</th>
-                          <th>Waktu</th>
+                          <th data-type="select">Jenis Pelaporan</th>
+                          <th data-type="select">Kategori Pelaporan</th>
+                          <th data-type="select">Desa Adat</th>
+                          <th data-type="select">Status Aktif</th>
                           <th>Aksi</th>
                         </tr>
                       </thead>
@@ -418,14 +386,27 @@
 
           <footer class="footer">
             <div
-              class="d-sm-flex justify-content-center justify-content-sm-between"
+              class="
+                d-sm-flex
+                justify-content-center justify-content-sm-between
+              "
             >
               <span
-                class="text-muted d-block text-center text-sm-left d-sm-inline-block"
+                class="
+                  text-muted
+                  d-block
+                  text-center text-sm-left
+                  d-sm-inline-block
+                "
                 >Copyright © bootstrapdash.com 2020</span
               >
               <span
-                class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center"
+                class="
+                  float-none float-sm-right
+                  d-block
+                  mt-1 mt-sm-0
+                  text-center
+                "
               >
                 Free
                 <a href="https://www.bootstrapdash.com/" target="_blank"
@@ -452,6 +433,7 @@
 
     <!-- JS -->
     <script src="../../js/refresh-token.js"></script>
+    <script src="../../js/filter-table.js"></script>
     <script src="js/read-pelaporan.js"></script>
     <script src="../../assets/js/Front End/Profil Admin/navbar-admin.js"></script>
     <script src="../../assets/js/loading.js"></script>

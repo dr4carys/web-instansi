@@ -1,8 +1,3 @@
-$("#form-instansi").submit(async (e) => {
-  e.preventDefault();
-  startLoading();
-  await read_petugas();
-});
 const active_status_badges = [
   "<label class='badge badge-primary-red'>Nonaktif</label>",
   "<label class='badge badge-success'>Aktif</label>",
@@ -32,37 +27,17 @@ $(document).ready(() => {
 
 const read_petugas = async () => {
   startLoading();
-  const statusAktif = $("#status_aktif").val();
   const idInstansi = localStorage.getItem("id_instansi");
   const req = await fetch(
     `https://api.sipandu-beradat.id/petugas/?id_instansi=${idInstansi}`
   );
   const { status_code, data } = await req.json();
-  console.log("HHHHH", statusAktif);
-  if (statusAktif == "c") {
-    console.log("hh");
-    data1 = data;
-  } else {
-    console.log("hh11111111");
-    data1 = data.filter(function filterss(data) {
-      return data.active_status == Boolean(Number(statusAktif));
-    });
-  }
 
   if (status_code === 200) {
-    $(".table-datatable").DataTable({
-      destroy: true,
-      fixedHeader: {
-        header: true,
-        footer: true,
-      },
-      columnDefs: [
-        {
-          orderable: false,
-          targets: [7],
-        },
-      ],
-      data: data1.map((obj, i) => [
+    setupFilterDataTable(
+      "tabel-petugas",
+      [7],
+      data.map((obj, i) => [
         i + 1,
         obj.name,
         obj.date_of_birth,
@@ -71,7 +46,7 @@ const read_petugas = async () => {
         obj.nik,
         active_status_badges[Number(obj.active_status)],
         `<div class="d-flex justify-content-center" style="gap:14px;">
-        <a href="detail-petugas.html?view-name=${obj.name}&view-avatar=${
+          <a href="detail-petugas.html?view-name=${obj.name}&view-avatar=${
           obj.avatar
         }&view-active-status=${obj.active_status}&nik=${obj.nik}&gender=${
           obj.gender === "l" ? "Laki-Laki" : "Perempuan"
@@ -82,29 +57,31 @@ const read_petugas = async () => {
         }&negara=${
           obj.instansi_petugas.kecamatan.kabupaten.provinsi.negara.name
         }" class="btn btn-inverse-success btn-rounded btn-icon btn-action mr-2 btn-detail" title="Detail Petugas" >
-        <i class="mdi mdi-account-details"></i>
-        </a>
-        <a href="#" class="btn btn-inverse-primary btn-rounded btn-icon btn-action mr-2 btn-edit" title="Edit" data-toggle="modal"
-        data-target="#modal-edit-petugas"
-          data-id="${obj.id}"
-          data-id-instansi="${obj.instansi_petugas.id}"
-          data-name="${obj.name}"
-          data-phone="${obj.phone}"
-          data-birthday="${obj.date_of_birth}"
-          data-nik="${obj.nik}"
-          data-gender="${obj.gender}"
-          data-active-status="${obj.active_status}"
-          data-avatar="${obj.avatar}">
-          <i class="mdi mdi-pencil"></i>
-        </a>
-        <a href="#" class="btn btn-inverse-primary-red btn-rounded btn-icon btn-action mr-2 btn-delete" title="Delete" data-toggle="modal"
-            data-target="#modal-hapus-petugas"
-          data-id="${obj.id}">
-          <i class="mdi mdi-delete"></i>
-        </a>
-      </div>`,
-      ]),
-    });
+          <i class="mdi mdi-account-details"></i>
+          </a>
+          <a href="#" class="btn btn-inverse-primary btn-rounded btn-icon btn-action mr-2 btn-edit" title="Edit" data-toggle="modal"
+          data-target="#modal-edit-petugas"
+            data-id="${obj.id}"
+            data-id-instansi="${obj.instansi_petugas.id}"
+            data-name="${obj.name}"
+            data-phone="${obj.phone}"
+            data-birthday="${obj.date_of_birth}"
+            data-nik="${obj.nik}"
+            data-gender="${obj.gender}"
+            data-active-status="${obj.active_status}"
+            data-avatar="${obj.avatar}">
+            <i class="mdi mdi-pencil"></i>
+          </a>
+          <a href="#" class="btn btn-inverse-primary-red btn-rounded btn-icon btn-action mr-2 btn-delete" title="Delete" data-toggle="modal"
+              data-target="#modal-hapus-petugas"
+            data-id="${obj.id}">
+            <i class="mdi mdi-delete"></i>
+          </a>
+        </div>`,
+      ])
+    );
+
+    stopLoading();
 
     $("tbody").on("click", ".btn-edit", (e) => {
       const id = $(e.currentTarget).attr("data-id");
@@ -127,7 +104,7 @@ const read_petugas = async () => {
       $("#edit-profil-pic").attr("src", avatar);
       $("#edit-active-status").val(active_status);
     });
-    stopLoading();
+
     $("tbody").on("click", ".btn-delete", (e) => {
       const id = $(e.currentTarget).attr("data-id");
       $("#hapus-id").val(id);
