@@ -36,6 +36,7 @@ const tambahPetugas = async () => {
     body: fd,
   });
   const { status_code, message } = await req.json();
+  console.log("HHHHHHHH",status_code)
   stopLoading();
   if (status_code === 200) {
     await read_petugas();
